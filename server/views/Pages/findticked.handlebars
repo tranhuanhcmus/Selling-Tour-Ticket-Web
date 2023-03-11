@@ -1,0 +1,38 @@
+<div class="bg-box">
+  <div class="container d-flex justify-content-center">
+    <form class="m-auto" id="findTicket">
+      <h1 class="text-center">Nhập thông tin đơn hàng</h1>
+      <div class="form-group">
+        <label for="formControlInput" class="form-label">Nhập Mã Đơn Hàng</label>
+        <input
+          form="findTicket"
+          class="form-control"
+          type="number"
+          id="madh"
+          required
+        />
+      </div>
+
+      <div class="d-grid gap-2 mt-4">
+        <button
+          form="findTicket"
+          class="bth btn-find btn-primary"
+          type="submit"
+          id="submitBtn"
+        >
+          Tìm Thông Tin Đơn Hàng
+        </button>
+      </div>
+
+      <h2 class="text-danger text-center mt-5 d-none">
+        <b>Đơn hàng không tồn tại</b>
+      </h2>
+    </form>
+  </div>
+</div>
+<script>
+  const btn=document.getElementById("submitBtn")
+  btn.addEventListener("click",(e)=>{e.preventDefault(); const
+  form=document.getElementById("findTicket"); const id=form.elements[0].value;
+  window.location.replace(`/ticketinfo/${id}`) });
+</script>

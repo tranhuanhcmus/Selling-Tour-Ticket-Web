@@ -1,0 +1,54 @@
+<section class="position-relative">
+  <div><button class="btn btn-primary w-100 rounded-0">Đăng kí tài khoản mới để
+      nhận voucher giảm 25% cho chuyến đi lần đầu tiên ngay!!!</button></div>
+  <div class="width-header">
+    <div class="card-header row m-0">
+      <div class="col-1">
+        <a class="" href="/"><img src="https://storage.googleapis.com/fe-production/icon_vxr_full.svg" alt="logo"
+            width="148" height="33" /></a>
+      </div>
+      <ul class="nav nav-pills card-header-pills nav justify-content-end col">
+        <li class="nav-item user">
+          <span class="nav-link" id="username"></span>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/qna">Trả lời câu hỏi</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/findticked">Tìm đơn hàng</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Hotline: 0991212383</a>
+        </li>
+
+        <li class="nav-item hideUser">
+          <button class="btn btn-primary DN" onclick=" document.getElementById('id01').style.display='block';"
+            type="button">Đăng nhập</button>
+        </li>
+        <li class="nav-item user">
+          <button class="btn btn-primary DN" type="button" onclick="handleLogout()">Đăng Xuất</button>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+  <script>
+    const handleLogout = () => {
+      sessionStorage.setItem("user", JSON.stringify({}));
+      window.location.reload()
+    }; var
+      user = JSON.parse(sessionStorage.getItem("user"));
+    if (Object.keys(user).length === 0 && Object.getPrototypeOf(user) ===
+      Object.prototype) {
+      var items = document.querySelectorAll("li.user");
+      [...items].map((item) => item.style.display = "none")
+    } else {
+      var
+        items = document.querySelectorAll(".hideUser");
+      [...items].map((item) => item.style.display = "none")
+    }; var
+      user = JSON.parse(sessionStorage.getItem("user"));
+    document.getElementById("username").innerText =
+      `Welcome ${user.role} ${user.username} `;
+  </script>
+</section>

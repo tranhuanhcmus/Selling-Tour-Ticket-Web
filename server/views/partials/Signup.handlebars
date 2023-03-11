@@ -1,0 +1,180 @@
+<section class="backgroundGray" id="id01">
+  <div class="container py-5">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-12 col-md-8 col-lg-7 col-xl-6">
+        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+            <span onclick="document.getElementById('id01').style.display='none'" class="close"
+              title="Close Modal">x</span>
+            <h3 class="mb-5">Đăng nhập</h3>
+            <form id="SignIn">
+              <div class="form-outline mb-4">
+                <input required type="text" class="form-control form-control-lg" placeholder="Username" form="SignIn" />
+
+              </div>
+
+              <div class="form-outline mb-4">
+                <input required type="password" class="form-control form-control-lg" placeholder="Password"
+                  form="SignIn" />
+
+              </div>
+
+            </form>
+
+
+
+            <button class="btn btn-primary btn-lg btn-block button" type="submit" form="SignIn"
+              onclick="handleSignIn(event)">Đăng nhập</button>
+
+            <button
+              onclick="document.getElementById('id01').style.display='none';document.getElementById('id02').style.display='block'"
+              class="btn btn-primary btn-lg btn-block button" type="submit">Đăng ký</button>
+
+
+
+            <hr class="my-4" />
+
+            <button class="btn btn-lg btn-block btn-light border border-primary text-primary bg-white" type="submit"><i
+                class="fab fa-google"></i> Continue with google</button>
+
+            <button class="btn btn-lg btn-block btn-light mb-2 border border-primary text-primary bg-white"
+              type="submit"><i class="fab fa-apple "></i> Continue with apple</button>
+
+            <button class="btn btn-lg btn-block btn-light mb-2 border border-primary text-primary bg-white"
+              type="submit"><i class="fab fa-facebook-square "></i> Continue with facebook </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="backgroundGray" id="id02">
+  <div class="container py-5">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-12 col-md-8 col-lg-7 col-xl-6">
+        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+            <span onclick="document.getElementById('id02').style.display='none'" class="close"
+              title="Close Modal">x</span>
+            <h3 class="mb-5">Đăng ký</h3>
+            <form id="SignUp">
+
+              <div class="form-outline mb-4">
+                <input required type="Username" id="typeUsernameX-2" class="form-control form-control-lg"
+                  placeholder="Username" />
+              </div>
+
+              <div class="form-outline mb-4">
+                <input required type="email" id="typeEmailX-2" class="form-control form-control-lg"
+                  placeholder="Email or Phone Number" />
+              </div>
+              <div class="form-outline mb-4">
+                <input required type="password" class="form-control form-control-lg" placeholder="Password" />
+              </div>
+              <div class="form-outline mb-4">
+                <input required type="password" class="form-control form-control-lg" placeholder="Confirm Password" />
+              </div>
+
+              <!-- Checkbox -->
+              <div class="form-check d-flex justify-content-start mb-4">
+                <input required class="form-check-input" type="checkbox" value="accept" id="form1Example3" />
+                <label class="form-check-label" for="form1Example3"> I agree to the <a href="#">term and
+                    conditions</a></label>
+              </div>
+
+              <button class="btn btn-primary btn-lg btn-block button" type="submit" onclick="handleSignUp(event)">Tạo
+                tài khoản</button>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+<script>
+  handleSignIn = async (event) => {
+    event.preventDefault();
+
+    const form = document.getElementById("SignIn");
+
+    var chk_status = form.checkValidity();
+    form.reportValidity();
+    if (chk_status) {
+      var username = form.elements[0].value.split(' ').join('');
+      var password = form.elements[1].value;
+
+      await fetch('/api/user/', {
+        method: 'POST',
+        body: JSON.stringify({
+          username: username,
+          password: password
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data) {
+            sessionStorage.setItem("user", JSON.stringify(data))
+
+            window.location.reload()
+          }
+          else {
+            alert("Not Exist Account")
+          }
+        }
+        )
+
+        .catch(error => {
+          console.log(error);
+        });
+
+    }
+
+  }
+  handleSignUp = async (event) => {
+
+    event.preventDefault();
+
+    const form = document.getElementById("SignUp");
+
+    var chk_status = form.checkValidity();
+
+    form.reportValidity();
+
+    if (chk_status) {
+
+      const username = form.elements[0].value.split(' ').join('');
+      const email = form.elements[1].value;
+      const password = form.elements[2].value;
+      const conFirmPass = form.elements[3].value;
+
+      if (password != conFirmPass) {
+        alert("sai mk")
+        return
+      }
+
+
+      await fetch('/api/user/create', {
+        method: 'POST',
+        body: JSON.stringify({
+          username: username,
+          email: email,
+          password: password,
+          role: "user",
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(res => res.status == 200 ? alert("success") : alert("fail"))
+        .catch(error => {
+          alert("error")
+        });
+
+    }
+  }
+
+</script>

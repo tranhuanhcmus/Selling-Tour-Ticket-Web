@@ -1,0 +1,57 @@
+<body>
+    <div class="payment-group container mt-5">
+        <div class="row">
+            <div class="option-method col-7">
+                <div>
+                    <input id="direct" name="method" type="radio" />
+                    <label for="direct">Thanh toán trực tiếp khi nhận hàng </label>
+                </div>
+                <div>
+                    <input id="shoppee" name="method" type="radio" />
+                    <label for="shopee">Ví ShoppeePay </label>
+                </div>
+                <div>
+                    <input id="zalo" name="method" type="radio" />
+                    <label for="zalo">Ví ZaloPay </label>
+                </div>
+                <div>
+                    <input id="momo" name="method" type="radio" />
+                    <label for="momo'">Ví Momo </label>
+                </div>
+                <div>
+                    <input id="bank" name="method" type="radio" />
+                    <label for="bank'">Chuyển Khoản Ngân Hàng </label>
+                </div>
+            </div>
+
+            <div class="payment-info col-5">
+                <div class="info p-3">
+                    <ul>
+                        <li><b>Họ và Tên:</b>Bùi Trần Huân</li>
+                        <li><b>Email:</b>20127507@student.hcmus.edu.vn</li>
+                        <li><b>Số Điện Thoại:</b>150184048</li>
+                        <li><b>Chuyến Đi:</b>Sài Gòn - Nha Trang</li>
+                        <li><b>Thời Gian:</b>11:00 - 21:00</li>
+                        <li><b>Số ghế: </b>3A</li>
+
+                        <hr />
+                        <li><b>Nhà xe:</b> Bình Minh Bus</li>
+                        <li>
+                            <b>Điểm đón: </b>VP Sài Gòn <br /> -11:00 (dự kiến)
+                        </li>
+                        <li>
+                            <b>Điểm trả: </b> Văn Phòng Nha Trang <br /> -21:00(dự kiến)
+                        </li>
+                    </ul>
+                    <div class="sum">Tổng cộng: 450.000</div>
+                </div>
+                <select class="form-select mt-2 coupon">
+                    <option selected>Nhập Mã giảm giá</option>
+                </select>
+                <button type="submit" class="btn btn-primary mt-2" onclick="window.location='/ticketinfo'">
+                    Xác nhận thanh toán
+                </button>
+            </div>
+        </div>
+    </div>
+</body>

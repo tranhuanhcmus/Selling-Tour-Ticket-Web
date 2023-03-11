@@ -1,0 +1,68 @@
+<div class="bg-box">
+  <div class="bg-box-info">
+    <h1>Thông tin đơn hàng</h1>
+
+    <img
+      class="img-bg"
+      src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y2FyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+      alt=""
+    />
+
+    <div class="info-box">
+      <h2 class="mb-2"><b>Mã đơn hàng: </b> {{data.id}}</h2>
+      <section>
+        <div class="ttdh col-8">
+          <ul>
+            <li><b>Họ và tên: </b>{{data.ten}}</li>
+            <li><b>Email: </b> {{data.email}}</li>
+            <li><b>Số điện thoại: </b>{{data.sdt}}</li>
+            <li><b>Chuyến đi: </b> {{chuyenxe.tpdi}} - {{chuyenxe.tpden}}</li>
+            <li><b>Điểm đón - trả: </b> {{data.diemdon}} - {{data.diemtra}}</li>
+            <li><b>Thời gian: </b>{{chuyenxe.tgkhoihanh}}</li>
+            <li><b>Số ghế: </b> {{data.soluong}}</li>
+            <hr />
+            <li><b>Trạng thái:</b> <h1 id="status">{{data.trangthai}}</h1></li>
+          </ul>
+        </div>
+        <div class="QRcode col-4">
+          <img
+            src="https://media.istockphoto.com/id/828088276/vector/qr-code-illustration.jpg?s=612x612&w=0&k=20&c=FnA7agr57XpFi081ZT5sEmxhLytMBlK4vzdQxt8A70M="
+            alt=""
+          />
+        </div>
+      </section>
+      <div class="interaction w-75">
+        <button
+          onclick="window.location.href='/findticked';"
+          class="btn btn-sm btn-success"
+        >
+          Tìm thông tin vé
+        </button>
+        <button class="btn btn-sm btn-download">Tải về hình ảnh</button>
+        <button class="btn btn-sm btn-email">Gửi cho email</button>
+        <button class="btn btn-sm btn-pdf">Tải bản PDF</button>
+      </div>
+    </div>
+  </div>
+  <div class="success text-success">
+    <div>
+      <i class="fa-solid fa-heart text-success"></i>Thanh Toán Thành Công
+    </div>
+    Xem thông tin đơn hàng của bạn dưới đây.
+    <button
+      onclick="document.getElementsByClassName('success')[0].style.display='none'"
+    >
+      Xác Nhận
+    </button>
+  </div>
+  <div class="failure d-none">
+    <div>Thanh Toán thất bại</div>
+    Có lỗi xảy ra :(
+    <button>Quay Lại</button>
+  </div>
+</div>
+<script>
+  const status=document.getElementById("status").innerText ;if(status=="1")
+  document.getElementById("status").innerText="Đã đặt chỗ" ;else
+  document.getElementById("status").innerText="Đang xử lí ";
+</script>
